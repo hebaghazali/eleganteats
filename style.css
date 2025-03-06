@@ -319,7 +319,9 @@ h3 {
 
 /* Modal */
 .modal {
-    display: none;
+    display: none; 
+    align-items: center; 
+    justify-content: center; 
     position: fixed;
     top: 0;
     left: 0;
