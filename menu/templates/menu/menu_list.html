@@ -29,10 +29,9 @@
                         <span class="price">${{ item.price }}</span>
                         <span class="chef">by Chef Maria</span>
                     </div>
-                    <a href="/{{ item.id }}" class="btn-details">View Details</a>
+                    <a href="{% url 'menu_item_detail' item.id %}" class="btn-details">View Details</a>
                 </div>
             </article>
-
             {% endfor %}
         </section>
     </main>
