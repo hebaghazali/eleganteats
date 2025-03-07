@@ -1,0 +1,35 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elegant Eats</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="icon" type="image/x-icon" href="{% static 'menu/images/favicon.ico' %}">
+    <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-brand">Elegant Eats</div>
+        <div class="nav-links">
+            {% with request.resolver_match.view_name as current_view %}
+            <a href="{% url 'menu:menu_list' %}" class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
+            <a href="#">Login</a>
+            <a href="#">Register</a>
+            {% endwith %}
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p>&copy; {% now "Y" %} Elegant Eats. All rights reserved.</p>
+    </footer>
+</body>
+</html>

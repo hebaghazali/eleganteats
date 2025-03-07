@@ -264,6 +264,7 @@ h3 {
     transition: all var(--transition-speed);
     width: fit-content;
     position: absolute;
+    margin-top: 2rem;
     margin-left: 1rem;
 }
 
@@ -499,7 +500,8 @@ footer {
 
 .menu-item,
 .auth-form,
-.item-details {
+.item-details,
+.btn-back {
     animation: fadeIn 0.5s ease-out;
 }
 

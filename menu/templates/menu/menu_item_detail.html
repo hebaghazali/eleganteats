@@ -1,42 +1,24 @@
-{% load static %}
+{% extends 'base.html'%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grilled Salmon - Elegant Eats</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="{% static 'menu/images/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+{% block content %}
+<a href="{% url 'menu:menu_list' %}" class="btn-back">
+    <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to Menu
+</a>
 
-</head>
-<body>
-    <a href="{% url 'menu:menu_list' %}" class="btn-back">
-        <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to Menu
-    </a>
-    <main class="item-details-container">
-        <article class="item-details">
-            <div class="item-image">
-                <img src="{{ item.image_url }}" alt="Grilled Salmon">
+<main class="item-details-container">
+    <article class="item-details">
+        <div class="item-image">
+            <img src="{{ item.image_url }}" alt="Grilled Salmon">
+        </div>
+        <div class="item-content">
+            <h1>{{ item.name }}</h1>
+            <p class="item-description">{{ item.description }}</p>
+            <div class="item-meta">
+                <span class="price">${{ item.price }}</span>
+                <span class="chef">by Chef Maria</span>
             </div>
-            <div class="item-content">
-                <h1>{{ item.name }}</h1>
-                <p class="item-description">{{ item.description }}</p>
-                <div class="item-meta">
-                    <span class="price">${{ item.price }}</span>
-                    <span class="chef">by Chef Maria</span>
-                </div>
-                <button class="btn-delete">Delete Item</button>
-            </div>
-        </article>
-    </main>
-
-    <footer>
-        <p>&copy; {% now "Y" %} Elegant Eats. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+            <button class="btn-delete">Delete Item</button>
+        </div>
+    </article>
+</main>
+{% endblock %}

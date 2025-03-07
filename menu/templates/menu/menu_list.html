@@ -1,57 +1,31 @@
-{% load static %}
+{% extends 'base.html'%}
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Elegant Eats</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/x-icon" href="{% static 'menu/images/favicon.ico' %}">
-    <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
-</head>
-<body>
-    <nav class="navbar">
-        <div class="nav-brand">Elegant Eats</div>
-        <div class="nav-links">
-            {% with request.resolver_match.view_name as current_view %}
-            <a href="{% url 'menu:menu_list' %}" class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
-            {% endwith %}
-        </div>
-    </nav>
+{% block content %}
+<main>
+    <header class="hero">
+        <h1>Discover Culinary Excellence</h1>
+        <p>Explore our carefully curated menu of delightful dishes</p>
+    </header>
 
-    <main>
-        <header class="hero">
-            <h1>Discover Culinary Excellence</h1>
-            <p>Explore our carefully curated menu of delightful dishes</p>
-        </header>
-
-        <section class="menu-grid">
-            {% for item in items %}
-            <article class="menu-item">
-                <div class="menu-item-image">
-                    <img src="{{ item.image_url }}" alt="{{ item.name }}">
+    <section class="menu-grid">
+        {% for item in items %}
+        <article class="menu-item">
+            <div class="menu-item-image">
+                <img src="{{ item.image_url }}" alt="{{ item.name }}">
+            </div>
+            <div class="menu-item-content">
+                <h2>{{ item.name }}</h2>
+                <p>{{ item.description }}</p>
+                <div class="menu-item-meta">
+                    <span class="price">${{ item.price }}</span>
+                    {% if item.chef %}
+                    <span class="chef">by {{ item.chef }}</span>
+                    {% endif %}
                 </div>
-                <div class="menu-item-content">
-                    <h2>{{ item.name }}</h2>
-                    <p>{{ item.description }}</p>
-                    <div class="menu-item-meta">
-                        <span class="price">${{ item.price }}</span>
-                        {% if item.chef %}
-                        <span class="chef">by {{ item.chef }}</span>
-                        {% endif %}
-                    </div>
-                    <a href="{% url 'menu:menu_item_detail' item.id %}" class="btn-details">View Details</a>
-                </div>
-            </article>
-            {% endfor %}
-        </section>
-    </main>
-
-    <footer>
-        <p>&copy; {% now "Y" %} Elegant Eats. All rights reserved.</p>
-    </footer>
-</body>
-</html>
+                <a href="{% url 'menu:menu_item_detail' item.id %}" class="btn-details">View Details</a>
+            </div>
+        </article>
+        {% endfor %}
+    </section>
+</main>
+{% endblock %}
