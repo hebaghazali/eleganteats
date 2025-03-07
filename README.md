@@ -1,6 +1,6 @@
 # Elegant Eats
 
-This project is built for learning purposes. The main focus of it is to learn the Django fundamentals. It is inspired by [Django Masterclass : Build 9 Real World Django Projects](https://www.udemy.com/course/django-course) course made by [Ashutosh Pawar](https://www.udemy.com/user/a9ff8aeb-0700-4b60-950d-ffdce7bf69bc/).
+This project is built for learning purposes. The main focus of it is to learn the Django fundamentals.
 
 ## Setup Instructions
 
@@ -49,4 +49,6 @@ This project is built for learning purposes. The main focus of it is to learn th
 
 ## Credits
 
-- Images used in this project are collected from [Unsplash](https://unsplash.com/).
+- This project is inspired by the [Django Masterclass : Build 9 Real World Django Projects](https://www.udemy.com/course/django-course) course by [Ashutosh Pawar](https://www.udemy.com/user/a9ff8aeb-0700-4b60-950d-ffdce7bf69bc/). 
+
+- Images used in this project were collected from [Unsplash](https://unsplash.com/).
