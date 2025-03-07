@@ -24,7 +24,7 @@
             {% for item in items %}
             <article class="menu-item">
                 <div class="menu-item-image">
-                    <!-- <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=500&q=80" alt="Grilled Salmon"> -->
+                    <img src="{{ item.image_url }}" alt="{{ item.name }}">
                 </div>
                 <div class="menu-item-content">
                     <h2>{{ item.name }}</h2>

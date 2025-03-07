@@ -46,3 +46,7 @@ This project is built for learning purposes. The main focus of it is to learn th
 - **Backend**: Django
 - **Frontend**: HTML, CSS, JavaScript
 - **Database**: SQLite
+
+## Credits
+
+- Images used in this project are collected from [Unsplash](https://unsplash.com/).
