@@ -13,7 +13,15 @@
     <link rel="stylesheet" href="{% static 'menu/css/style.css' %}">
 </head>
 <body>
- 
+    <nav class="navbar">
+        <div class="nav-brand">Elegant Eats</div>
+        <div class="nav-links">
+            {% with request.resolver_match.view_name as current_view %}
+            <a href="{% url 'menu:menu_list' %}" class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
+            {% endwith %}
+        </div>
+    </nav>
+
     <main>
         <header class="hero">
             <h1>Discover Culinary Excellence</h1>
