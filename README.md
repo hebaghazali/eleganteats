@@ -1,4 +1,4 @@
-# eleganteats
+# Elegant Eats
 
 This project is built for learning purposes. The main focus of it is to learn the Django fundamentals. It is inspired by [Django Masterclass : Build 9 Real World Django Projects](https://www.udemy.com/course/django-course) course made by [Ashutosh Pawar](https://www.udemy.com/user/a9ff8aeb-0700-4b60-950d-ffdce7bf69bc/).
 
