@@ -8,16 +8,26 @@
 <main class="item-details-container">
     <article class="item-details">
         <div class="item-image">
-            <img src="{{ item.image_url }}" alt="Grilled Salmon">
+            <img src="{{ item.image_url }}" alt="{{ item.name }}">
         </div>
         <div class="item-content">
             <h1>{{ item.name }}</h1>
             <p class="item-description">{{ item.description }}</p>
             <div class="item-meta">
                 <span class="price">${{ item.price }}</span>
-                <span class="chef">by Chef Maria</span>
+                {% if item.chef %}
+                <span class="chef">by {{ item.chef }}</span>
+                {% endif %}
             </div>
-            <button class="btn-delete">Delete Item</button>
+            <div class="item-actions">
+                {% if user.is_authenticated %}
+                    <a class="btn-update">Update Item</a>
+                    <a class="btn-delete">Delete Item</a>
+                {% else %}
+                    <button class="btn-update disabled" data-tooltip="Please login to update items" disabled>Update Item</button>
+                    <button class="btn-delete disabled" data-tooltip="Please login to delete items" disabled>Delete Item</button>
+                {% endif %}
+            </div>
         </div>
     </article>
 </main>
