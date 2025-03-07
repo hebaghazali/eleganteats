@@ -1,19 +1,21 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 
-from menu.models import Item
+from menu.models import FoodItem
 
-# Create your views here.
+
 def index(request):
-    item_list = Item.objects.all()
-    print(f"{item_list}")
-    return HttpResponse(item_list)
+    item_list = FoodItem.objects.all()
+    context = {'item_list': item_list}
 
-def item(request, item_id):
+    return render(request, 'menu/index.html', context)
+
+
+def item_detail(request, item_id):
     try:
-        item = Item.objects.get(pk=item_id)
+        item = FoodItem.objects.get(pk=item_id)
         if not item:
             return HttpResponse("Item not found")
         return HttpResponse(f"Item: {item.name} - {item.description} - ${item.price}")
-    except Item.DoesNotExist:
+    except FoodItem.DoesNotExist:
         return HttpResponse("Failed: Item not found")
