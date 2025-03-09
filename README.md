@@ -10,6 +10,8 @@ This project is built for learning purposes. The main focus of it is to learn th
     cd eleganteats
     ```
 
+==> Before the next step, make sure you install Python 3.13 or later.
+
 2. Create and activate a virtual environment:
     ```sh
     python -m venv venv
