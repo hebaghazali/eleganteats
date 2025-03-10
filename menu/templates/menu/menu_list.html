@@ -6,9 +6,9 @@
         <h1>Discover Culinary Excellence</h1>
         <p>Explore our carefully curated menu of delightful dishes</p>
         {% if user.is_authenticated %}
-            <a class="btn-add">Add New Item</a>
+        <a href="{% url 'menu:menu_item_add' %}" class="btn-add">Add New Item</a>
         {% else %}
-            <a class="btn-add disabled" data-tooltip="Please login to add new items" disabled>Add New Item</a>
+        <a class="btn-add disabled" data-tooltip="Please login to add new items" disabled>Add New Item</a>
         {% endif %}
     </header>
 

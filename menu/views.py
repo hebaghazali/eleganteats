@@ -1,7 +1,11 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import redirect, render
 
-from menu.models import FoodItem
+from .forms import FoodItemForm
+from .models import FoodItem
+from django.contrib import messages
+
+from django.http import HttpResponse
 
 
 def menu_list(request):
@@ -16,4 +20,16 @@ def menu_item_detail(request, item_id):
         item = FoodItem.objects.get(pk=item_id)
         return render(request, 'menu/menu_item_detail.html', {'item': item})
     except FoodItem.DoesNotExist:
-        return HttpResponse("Failed: Item not found")
+        return HttpResponse('Failed: Item not found')
+
+
+def menu_item_add(request):
+    form = FoodItemForm(request.POST or None)
+    
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'show_modal_success')
+        return redirect('menu:menu_item_add')
+
+    return render(request, 'menu/menu_item_add.html', {'form': form})
+
