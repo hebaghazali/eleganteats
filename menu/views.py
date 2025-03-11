@@ -38,11 +38,20 @@ def menu_item_update(request, id):
     item = FoodItem.objects.get(pk=id)
     form = FoodItemForm(request.POST or None, instance=item)
 
-    print(request.method)
-
     if form.is_valid():
         form.save()
         messages.success(request, 'show_modal_success')
         return redirect('menu:menu_list')
 
     return render(request, 'menu/menu_item_update.html', {'form': form, 'item': item})
+
+
+def menu_item_delete(request, id):
+    item = FoodItem.objects.get(pk=id)
+
+    if request.method == 'POST':
+        item.delete()
+        messages.success(request, 'show_modal_success')
+        return redirect('menu:menu_list')
+
+    return render(request, 'menu/menu_item_delete.html', {'item': item})

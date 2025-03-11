@@ -23,7 +23,7 @@
                 <div class="item-actions">
                     {% if user.is_authenticated %}
                         <a href="{% url 'menu:menu_item_update' item.id %}" class="btn-update">Update Item</a>
-                        <a class="btn-delete">Delete Item</a>
+                        <a href="{% url 'menu:menu_item_delete' item.id %}" class="btn-delete">Delete Item</a>
                     {% else %}
                         <button class="btn-update disabled"
                                 data-tooltip="Please login to update items"
