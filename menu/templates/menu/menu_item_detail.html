@@ -1,36 +1,42 @@
-{% extends 'base.html'%}
+{% extends "base.html" %}
 
-{% block title %}Item Detail{% endblock %}
+{% block title %}
+    Item Detail
+{% endblock title %}
 
 {% block content %}
-<a href="{% url 'menu:menu_list' %}" class="btn-back">
-    <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to Menu
-</a>
-
-<main class="item-details-container">
-    <article class="item-details">
-        <div class="item-image">
-            <img src="{{ item.image_url }}" alt="{{ item.name }}">
-        </div>
-        <div class="item-content">
-            <h1>{{ item.name }}</h1>
-            <p class="item-description">{{ item.description }}</p>
-            <div class="item-meta">
-                <span class="price">${{ item.price }}</span>
-                {% if item.chef %}
-                <span class="chef">by {{ item.chef }}</span>
-                {% endif %}
+    <a href="{% url 'menu:menu_list' %}" class="btn-back">
+        <i class="fas fa-arrow-left"></i>&nbsp;&nbsp;Back to Menu
+    </a>
+    <main class="item-details-container">
+        <article class="item-details">
+            <div class="item-image">
+                <img src="{{ item.image_url }}" alt="{{ item.name }}">
             </div>
-            <div class="item-actions">
-                {% if user.is_authenticated %}
-                    <a class="btn-update">Update Item</a>
-                    <a class="btn-delete">Delete Item</a>
-                {% else %}
-                    <button class="btn-update disabled" data-tooltip="Please login to update items" disabled>Update Item</button>
-                    <button class="btn-delete disabled" data-tooltip="Please login to delete items" disabled>Delete Item</button>
-                {% endif %}
+            <div class="item-content">
+                <h1>{{ item.name }}</h1>
+                <p class="item-description">{{ item.description }}</p>
+                <div class="item-meta">
+                    <span class="price">${{ item.price }}</span>
+                    {% if item.chef %}<span class="chef">by {{ item.chef }}</span>{% endif %}
+                </div>
+                <div class="item-actions">
+                    {% if user.is_authenticated %}
+                        <a class="btn-update">Update Item</a>
+                        <a class="btn-delete">Delete Item</a>
+                    {% else %}
+                        <a href="{% url 'menu:menu_item_update' item.id %}"
+                           class="btn-update disabled"
+                           data-tooltip="Please login to update items"
+                           disabled>Update Item</a>
+                        <a href="#"
+                           class="btn-delete disabled"
+                           data-tooltip="Please login to delete items"
+                           disabled>Delete
+                        Item</a>
+                    {% endif %}
+                </div>
             </div>
-        </div>
-    </article>
-</main>
+        </article>
+    </main>
 {% endblock %}
