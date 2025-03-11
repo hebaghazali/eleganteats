@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Item{% endblock %}
+
+{% block content %}
+
+    <main class="auth-container">
+        <form class="auth-form add-item-form" method="post">
+            {% csrf_token %}
+            <h1>Update Existing Item</h1>
+
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <strong>There were some errors in your form:</strong>
+                    <ul>
+                        {% for field, errors in form.errors.items %}
+                            {% for error in errors %}<li>{{ error }}</li>{% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+
+            <div class="form-group">
+                <label for="item-name">Item Name</label>
+                {{ form.name }}
+            </div>
+
+            <div class="form-group">
+                <label for="description">Description</label>
+                {{ form.description }}
+            </div>
+
+            <div class="form-group">
+                <label for="price">Price</label>
+                {{ form.price }}
+            </div>
+
+            <div class="form-group">
+                <label for="chef">Chef (optional)</label>
+                {{ form.chef }}
+            </div>
+
+            <div class="form-group">
+                <label for="image">Image URL (optional)</label>
+                {{ form.image_url }}
+            </div>
+
+            <button type="submit" class="btn-primary">Update Item</button>
+        </form>
+    </main>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="modal success-modal" id="successModal">
+                <div class="modal-content">
+                    <h2>Success!</h2>
+                    <p>The item has been updated successfully.</p>
+                    <div class="modal-actions">
+                        <a href="{% url 'menu:menu_list' %}" class="btn-primary">Back to Home</a>
+                        <button class="btn-secondary" id="closeMessage">Update Again</button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let modal = document.getElementById("successModal");
+        let closeButton = document.getElementById("closeMessage");
+
+        if (modal) {
+            modal.style.display = "flex";
+        }
+
+        closeButton?.addEventListener("click", function () {
+            modal.style.display = "none";
+        });
+    });
+    </script>
+
+{% endblock %}

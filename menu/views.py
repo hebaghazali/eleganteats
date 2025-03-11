@@ -25,7 +25,7 @@ def menu_item_detail(request, item_id):
 
 def menu_item_add(request):
     form = FoodItemForm(request.POST or None)
-    
+
     if form.is_valid():
         form.save()
         messages.success(request, 'show_modal_success')
@@ -33,3 +33,16 @@ def menu_item_add(request):
 
     return render(request, 'menu/menu_item_add.html', {'form': form})
 
+
+def menu_item_update(request, id):
+    item = FoodItem.objects.get(pk=id)
+    form = FoodItemForm(request.POST or None, instance=item)
+
+    print(request.method)
+
+    if form.is_valid():
+        form.save()
+        messages.success(request, 'show_modal_success')
+        return redirect('menu:menu_list')
+
+    return render(request, 'menu/menu_item_update.html', {'form': form, 'item': item})
