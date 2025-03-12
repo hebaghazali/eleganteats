@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 
 
 def register(request):
@@ -8,4 +8,5 @@ def register(request):
 
 
 def login(request):
-    return render(request, 'users/login.html')
+    form = AuthenticationForm()
+    return render(request, 'users/login.html', {'form': form})

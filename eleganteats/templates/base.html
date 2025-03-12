@@ -28,8 +28,10 @@
                 {% with request.resolver_match.view_name as current_view %}
                     <a href="{% url 'menu:menu_list' %}"
                        class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
-                    <a href="{% url 'users:login' %}">Login</a>
-                    <a href="{% url 'users:register' %}">Register</a>
+                    <a href="{% url 'users:login' %}"
+                       class="{% if current_view == 'users:login' %}active{% endif %}">Login</a>
+                    <a href="{% url 'users:register' %}"
+                       class="{% if current_view == 'users:register' %}active{% endif %}">Register</a>
                 {% endwith %}
             </div>
         </nav>
