@@ -12,13 +12,13 @@ def menu_list(request):
     items = FoodItem.objects.all()
     context = {'items': items}
 
-    return render(request, 'menu/menu_list.html', context)
+    return render(request, 'menu_list.html', context)
 
 
 def menu_item_detail(request, item_id):
     try:
         item = FoodItem.objects.get(pk=item_id)
-        return render(request, 'menu/menu_item_detail.html', {'item': item})
+        return render(request, 'menu_item_detail.html', {'item': item})
     except FoodItem.DoesNotExist:
         return HttpResponse('Failed: Item not found')
 
@@ -31,7 +31,7 @@ def menu_item_add(request):
         messages.success(request, 'show_modal_success')
         return redirect('menu:menu_item_add')
 
-    return render(request, 'menu/menu_item_add.html', {'form': form})
+    return render(request, 'menu_item_add.html', {'form': form})
 
 
 def menu_item_update(request, id):
@@ -43,7 +43,7 @@ def menu_item_update(request, id):
         messages.success(request, 'show_modal_success')
         return redirect('menu:menu_list')
 
-    return render(request, 'menu/menu_item_update.html', {'form': form, 'item': item})
+    return render(request, 'menu_item_update.html', {'form': form, 'item': item})
 
 
 def menu_item_delete(request, id):
@@ -54,4 +54,4 @@ def menu_item_delete(request, id):
         messages.success(request, 'show_modal_success')
         return redirect('menu:menu_list')
 
-    return render(request, 'menu/menu_item_delete.html', {'item': item})
+    return render(request, 'menu_item_delete.html', {'item': item})

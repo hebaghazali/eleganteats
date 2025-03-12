@@ -1,0 +1,78 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+              content="Elegant Eats - Delicious and elegant meals for every occasion.">
+        <title>Elegant Eats -
+            {% block title %}Home{% endblock %}
+        </title>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap"
+              rel="stylesheet">
+        <link rel="stylesheet"
+              href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+        <link rel="icon"
+              type="image/x-icon"
+              href="{% static 'images/favicon.ico' %}">
+        <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    </head>
+    <body>
+        <nav class="navbar">
+            <div class="nav-brand">Elegant Eats</div>
+            <div class="nav-links">
+                {% with request.resolver_match.view_name as current_view %}
+                    <a href="{% url 'menu:menu_list' %}"
+                       class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
+                    <a href="#">Login</a>
+                    <a href="#">Register</a>
+                {% endwith %}
+            </div>
+        </nav>
+
+        {% block content %}{% endblock %}
+
+        <footer>
+            <p>© {% now "Y" %} Elegant Eats. All rights reserved.</p>
+        </footer>
+
+        <script>
+        function showAlert(message, type) {
+            const alert = document.getElementById('alert');
+            alert.textContent = message;
+            alert.className = `alert ${type}`;
+            alert.style.display = 'block';
+            setTimeout(() => {
+                alert.style.display = 'none';
+            }, 3000);
+        }
+
+        function initializeTooltips() {
+            const buttons = document.querySelectorAll('[data-tooltip]');
+            buttons.forEach(button => {
+                button.addEventListener('mouseenter', (e) => {
+                    const tooltip = document.createElement('div');
+                    tooltip.className = 'tooltip';
+                    tooltip.textContent = e.target.dataset.tooltip;
+                    document.body.appendChild(tooltip);
+                    
+                    const rect = e.target.getBoundingClientRect();
+                    tooltip.style.top = rect.bottom + 5 + 'px';
+                    tooltip.style.left = rect.left + (rect.width - tooltip.offsetWidth) / 2 + 'px';
+                });
+
+                button.addEventListener('mouseleave', () => {
+                    const tooltips = document.querySelectorAll('.tooltip');
+                    tooltips.forEach(t => t.remove());
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', initializeTooltips);
+        </script>
+    </body>
+</html>
