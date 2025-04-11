@@ -28,10 +28,17 @@
                 {% with request.resolver_match.view_name as current_view %}
                     <a href="{% url 'menu:menu_list' %}"
                        class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
-                    <a href="{% url 'users:login' %}"
-                       class="{% if current_view == 'users:login' %}active{% endif %}">Login</a>
-                    <a href="{% url 'users:register' %}"
-                       class="{% if current_view == 'users:register' %}active{% endif %}">Register</a>
+                    {% if user.is_authenticated %}
+                        {% comment %}
+                        <a href="{% url 'users:logout' %}"
+                        class="{% if current_view == 'users:logout' %}active{% endif %}">Logout</a>
+                        {% endcomment %}
+                    {% else %}
+                        <a href="{% url 'users:login' %}"
+                        class="{% if current_view == 'users:login' %}active{% endif %}">Login</a>
+                        <a href="{% url 'users:register' %}"
+                        class="{% if current_view == 'users:register' %}active{% endif %}">Register</a>
+                    {% endif %}
                 {% endwith %}
             </div>
         </nav>
