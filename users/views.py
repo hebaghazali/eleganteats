@@ -1,9 +1,14 @@
 from django.shortcuts import redirect, render
 from django.contrib import messages
+
+from users.decorators import anonymous_required
 from .forms import RegisterForm
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
+from django.contrib.auth.views import LoginView
 
+@anonymous_required
 def register(request):
     if request.method == 'POST':
         form = RegisterForm(request.POST)
@@ -16,6 +21,10 @@ def register(request):
     else:
         form = RegisterForm()
     return render(request, 'users/register.html', {'form': form})
+
+@method_decorator(anonymous_required, name='dispatch')
+class CustomLoginView(LoginView):
+    template_name = 'users/login.html'
 
 @login_required
 def profile(request):

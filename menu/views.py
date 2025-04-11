@@ -4,6 +4,7 @@ from django.shortcuts import redirect, render
 from .forms import FoodItemForm
 from .models import FoodItem
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from django.http import HttpResponse
 
@@ -23,6 +24,7 @@ def menu_item_detail(request, item_id):
         return HttpResponse('Failed: Item not found')
 
 
+@login_required
 def menu_item_add(request):
     form = FoodItemForm(request.POST or None)
 
@@ -33,7 +35,7 @@ def menu_item_add(request):
 
     return render(request, 'menu_item_add.html', {'form': form})
 
-
+@login_required
 def menu_item_update(request, id):
     item = FoodItem.objects.get(pk=id)
     form = FoodItemForm(request.POST or None, instance=item)
@@ -46,6 +48,7 @@ def menu_item_update(request, id):
     return render(request, 'menu_item_update.html', {'form': form, 'item': item})
 
 
+@login_required
 def menu_item_delete(request, id):
     item = FoodItem.objects.get(pk=id)
 
