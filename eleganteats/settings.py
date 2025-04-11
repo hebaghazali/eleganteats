@@ -126,3 +126,4 @@ STATICFILES_DIRS = [BASE_DIR / 'eleganteats' / 'static']
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'menu:menu_list'
+LOGIN_URL = 'users:login'

@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="auth-container">
+    <div class="auth-form">
+        <h1>My Profile</h1>
+        
+        <div class="form-group">
+            <label>Username</label>
+            <p>{{ user.username }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <p>{{ user.email }}</p>
+        </div>
+
+        <div class="form-group">
+            <label>Date Joined</label>
+            <p>{{ user.date_joined|date:'F d, Y' }}</p>
+        </div>
+
+        {% if user_recipes %}
+        <h2 style="margin: 2rem 0 1rem">My Recipes</h2>
+        <div class="user-recipes">
+            {% for recipe in user_recipes %}
+            <div class="menu-item">
+                <div class="menu-item-image">
+                    <img src="{{ recipe.image.url }}" alt="{{ recipe.name }}">
+                </div>
+                <div class="menu-item-content">
+                    <h2>{{ recipe.name }}</h2>
+                    <div class="menu-item-meta">
+                        <span class="price">${{ recipe.price }}</span>
+                        <span class="chef">Added on {{ recipe.created_at|date:'M d, Y' }}</span>
+                    </div>
+                    <div class="item-actions">
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
