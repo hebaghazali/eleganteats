@@ -29,10 +29,10 @@
                     <a href="{% url 'menu:menu_list' %}"
                        class="{% if current_view == 'menu:menu_list' %}active{% endif %}">Home</a>
                     {% if user.is_authenticated %}
-                        {% comment %}
-                        <a href="{% url 'users:logout' %}"
-                        class="{% if current_view == 'users:logout' %}active{% endif %}">Logout</a>
-                        {% endcomment %}
+                        <form method="post" action="{% url 'users:logout' %}" id="logout-form" style="display: none;">
+                            {% csrf_token %}
+                        </form>
+                        <a href="#" onclick="document.getElementById('logout-form').submit(); return false;">Logout</a>
                     {% else %}
                         <a href="{% url 'users:login' %}"
                         class="{% if current_view == 'users:login' %}active{% endif %}">Login</a>
