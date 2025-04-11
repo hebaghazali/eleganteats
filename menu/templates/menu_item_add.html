@@ -47,7 +47,7 @@
             <div class="modal success-modal" id="successModal">
                 <div class="modal-content">
                     <h2>Success!</h2>
-                    <p>The item has been added successfully.</p>
+                    <p>{{ message }}</p>
                     <div class="modal-actions">
                         <a href="{% url 'menu:menu_list' %}" class="btn-primary">Back to Home</a>
                         <button class="btn-secondary" id="closeMessage">Add Another Item</button>

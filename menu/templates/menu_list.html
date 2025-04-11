@@ -14,6 +14,10 @@
             {% endif %}
         </header>
 
+        {% for message in messages %}
+            <div class="alert {{ message.tags }}">{{ message }}</div>
+        {% endfor%}
+
         <section class="menu-grid">
             {% for item in items %}
                 <article class="menu-item">

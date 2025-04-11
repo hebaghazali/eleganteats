@@ -28,7 +28,7 @@ def menu_item_add(request):
 
     if form.is_valid():
         form.save()
-        messages.success(request, 'show_modal_success')
+        messages.success(request, 'The item has been added successfully.')
         return redirect('menu:menu_item_add')
 
     return render(request, 'menu_item_add.html', {'form': form})
@@ -40,7 +40,7 @@ def menu_item_update(request, id):
 
     if form.is_valid():
         form.save()
-        messages.success(request, 'show_modal_success')
+        messages.success(request, 'The item has been updated successfully.')
         return redirect('menu:menu_list')
 
     return render(request, 'menu_item_update.html', {'form': form, 'item': item})
@@ -51,7 +51,7 @@ def menu_item_delete(request, id):
 
     if request.method == 'POST':
         item.delete()
-        messages.success(request, 'show_modal_success')
+        messages.success(request, 'The item has been deleted successfully.')
         return redirect('menu:menu_list')
 
     return render(request, 'menu_item_delete.html', {'item': item})
