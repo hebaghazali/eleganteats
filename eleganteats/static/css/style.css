@@ -389,6 +389,10 @@ h3 {
     padding: 2rem;
 }
 
+.auth-container.logout {
+    flex-direction: column;
+}
+
 .auth-form {
     background: var(--card-background);
     padding: 2rem;
