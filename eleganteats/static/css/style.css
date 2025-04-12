@@ -120,8 +120,8 @@ h3 {
 .menu-item-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    transition: transform var(--transition-speed);
+    object-fit: cover; 
+    border-radius: var(--border-radius); 
 }
 
 .menu-item:hover .menu-item-image img {
@@ -645,4 +645,16 @@ footer {
 
 .modal.show .modal-content {
     animation: slideIn 0.3s ease-out;
+}
+
+/* Profile Picture Styling */
+.profile-picture {
+    width: 100%;
+    max-width: 200px; 
+    height: auto;
+    border-radius: 50%; 
+    object-fit: cover;
+    display: block;
+    margin: 0 auto; 
+    aspect-ratio: 1 / 1; 
 }
