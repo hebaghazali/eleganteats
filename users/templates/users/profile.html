@@ -26,6 +26,11 @@
             <p>{{ user.date_joined|date:'F d, Y' }}</p>
         </div>
 
+        <div class="form-group">
+            <label>Location</label>
+            <p>{{ user.profile.location }}</p>
+        </div>
+
 
         {% if user_recipes %}
         <h2 style="margin: 2rem 0 1rem">My Recipes</h2>
